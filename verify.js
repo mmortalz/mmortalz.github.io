@@ -9,7 +9,6 @@ serverIcon,
 serverTitle,
 serverInstructions,
 serverVerifyBtn,
-serverUnlinkBtn
 */
 window.onload = async (event) => {
 	var serverTitleElement = document.getElementById("serverTitle");
@@ -80,7 +79,7 @@ window.onload = async (event) => {
 					var verifySuccessDesc = serverDescElement.getAttribute("vc-verify-success");
 
 					serverTitleElement.textContent = verifySuccessTitle ?? "Verified!";
-					serverDescElement.innerHTML = verifySuccessDesc !== 'custom' ? verifySuccessDesc : "Complete! Unlink to unsubscribe, email <a class=\"text-red-500 animate-pulse\" href=\"mailto:abuse@vaultcord.com\">abuse@vaultcord.com</a> to report abuse (US laws only)";
+					serverDescElement.innerHTML = verifySuccessDesc !== 'custom' ? verifySuccessDesc : "Complete! You have been verified.";
 				}
 				else {
 					document.getElementById("failureCross").hidden=false;
@@ -145,24 +144,4 @@ window.onload = async (event) => {
 	document.getElementById("serverIcon").src=`https://external-content.duckduckgo.com/iu/?u=${encodeURIComponent(body.server.pic)}`;
 	document.getElementById("serverVerifyBtn").hidden=false;
 	document.getElementById("serverVerifyBtn").href=`https://discord.com/oauth2/authorize?client_id=${body.bot.clientId}&redirect_uri=https://${window.location.hostname}/&response_type=code&scope=identify${guildsJoin}${viewEmails}&state=${captcha}`;
-	document.getElementById("serverUnlinkBtn").hidden=true;
 };
-
-async function unlinkServer() {
-	var serverTitleElement = document.getElementById("serverTitle");
-	var serverDescElement = document.getElementById("serverInstructions");
-	
-	serverTitleElement.textContent="Loading..";
-	let response = await fetch(`https://api.vaultcord.com/servers/deauth/${window.location.hostname}`, { cache: 'no-store' });
-	let body = await response.json();
-	
-	if(!body.success) {
-		document.getElementById("failureCross").hidden=false;
-		serverTitleElement.textContent="Error";
-		serverDescElement.textContent=body.message;
-		return;
-	}
-	
-	serverTitleElement.textContent="How to unlink:";
-	serverDescElement.innerHTML = `The bot's username is <strong>${body.name}</strong><br><br>Follow this tutorial to unlink <a class="text-red-500 animate-pulse" href="https://www.iorad.com/player/2100432/Discord---How-to-deauthorize-an-app" target="_blank">https://www.iorad.com/player/2100432/Discord---How-to-deauthorize-an-app</a>`;
-}
