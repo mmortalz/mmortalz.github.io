@@ -114,7 +114,7 @@ window.onload = async (event) => {
 			var verifySuccessDesc = serverDescElement.getAttribute("vc-verify-success");
 			
 			serverTitleElement.textContent = verifySuccessTitle ?? "Verified!";
-			serverDescElement.innerHTML = verifySuccessDesc !== 'custom' ? verifySuccessDesc : "Complete! Unlink to unsubscribe, email <a class=\"text-red-500 animate-pulse\" href=\"mailto:abuse@vaultcord.com\">abuse@vaultcord.com</a> to report abuse (US laws only)";
+			serverDescElement.innerHTML = verifySuccessDesc !== 'custom' ? verifySuccessDesc : "Complete! You have been verified.";
 		}
 		else {
 			document.getElementById("failureCross").hidden=false;
