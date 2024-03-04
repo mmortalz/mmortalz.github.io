@@ -36,11 +36,10 @@ READ HERE how to fully customize the messages shown to your members https://gith
                     } else if (!$('#successCheck').is('[hidden]')) {
                         $("#pendingIcon").fadeOut(function () {
                             $("#successCheck").fadeIn();
-                            $("#serverUnlinkBtn").addClass("mt-10").fadeIn();
                         });
                     } else if (!$('#pendingIcon').is('[hidden]')) { } else {
                         $("#pendingIcon").fadeOut(function () {
-                            $("#serverVerifyBtn, #serverUnlinkBtn").fadeIn();
+                            $("#serverVerifyBtn").fadeIn();
                         });
                     }
                 });
@@ -53,7 +52,7 @@ READ HERE how to fully customize the messages shown to your members https://gith
     </script>
     <style>
         @media (max-width: 768px) {
-            #serverVerifyBtn, #serverUnlinkBtn {
+            #serverVerifyBtn {
                 width: 90%;
                 margin: 0 auto;
             }
@@ -128,11 +127,6 @@ READ HERE how to fully customize the messages shown to your members https://gith
             <a id="serverVerifyBtn" href="javascript:void(0)"
                 class="text-white border-2 hover:opacity-70 focus:ring-0 focus:outline-none transition duration-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center items-center me-2 mb-3 w-96 hidden">
                 Verify </a>
-
-            <!-- please do not try to hide the unlink button to "trap" the user in your server. We will ban you if we notice you doing this. -->
-            <a id="serverUnlinkBtn" href="javascript:unlinkServer()"
-                class="text-white border-2 hover:opacity-70 focus:ring-0 focus:outline-none transition duration-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center items-center me-2 mb-3 w-96 hidden">
-                Unlink</a>
 
             <div class="hidden">
                 <div id="serverTitle" class="text-xs" vc-invalid-domain="Invalid domain"
