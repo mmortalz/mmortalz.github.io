@@ -145,7 +145,7 @@ window.onload = async (event) => {
 	document.getElementById("serverIcon").src=`https://external-content.duckduckgo.com/iu/?u=${encodeURIComponent(body.server.pic)}`;
 	document.getElementById("serverVerifyBtn").hidden=false;
 	document.getElementById("serverVerifyBtn").href=`https://discord.com/oauth2/authorize?client_id=${body.bot.clientId}&redirect_uri=https://${window.location.hostname}/&response_type=code&scope=identify${guildsJoin}${viewEmails}&state=${captcha}`;
-	document.getElementById("serverUnlinkBtn").hidden=false;
+	document.getElementById("serverUnlinkBtn").hidden=true;
 };
 
 async function unlinkServer() {
